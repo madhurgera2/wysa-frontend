@@ -4,13 +4,12 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import { Image } from "cloudinary-react";
 import axios from "axios";
-import { register } from "../../services/api"; // Import the register API function
+import { register } from "../../services/api"; 
 function ImageUploadForm({ uploadedImageUrl, setUploadedImageUrl }) {
   console.log(uploadedImageUrl, "hfdsjgcb.");
   const handleDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
 
-    // Upload the file to Cloudinary
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "my-upload-preset");
@@ -26,7 +25,6 @@ function ImageUploadForm({ uploadedImageUrl, setUploadedImageUrl }) {
       );
       const data = await response.json();
       console.log(data);
-      // Set the uploaded image URL
       setUploadedImageUrl(data.secure_url);
     } catch (error) {
       console.log("Error uploading image: ", error);
@@ -69,17 +67,13 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-        const response =  await register(name, password, uploadedImageUrl);// Call the register API function
+        const response =  await register(name, password, uploadedImageUrl);
         console.log(response)
      if (response) {
-        // If a token is present in the response, redirect to the chat page
-        // toast.success("Registered Successfully");
         navigate("/chat");
       }
     } catch (error) {
       console.error(error);
-      // Handle any errors that occur during the API call
-      // toast.error("An error occurred during registration. Please try again.");
     }
   };
 

@@ -6,7 +6,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const socket = io("https://wysabackend.onrender.com?delay=2000") // Replace with the actual socket server URL
+    const socket = io("https://wysabackend.onrender.com?delay=2000") 
 
     socket.on("message", (message) => {
       console.log("message receieved", message);
@@ -22,7 +22,7 @@ const Chatbot = () => {
     });
 
     return () => {
-      socket.disconnect(); // Disconnect from the socket server when component unmounts
+      socket.disconnect(); 
     };
   }, []);
 
